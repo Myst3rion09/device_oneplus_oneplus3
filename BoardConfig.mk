@@ -215,6 +215,10 @@ TW_DEFAULT_LANGUAGE := en-US
 TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_CRYPTO := true
 
+# Releasetools
+TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_op3
+TARGET_RELEASETOOLS_EXTENSIONS := $(PLATFORM_PATH)
+
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
