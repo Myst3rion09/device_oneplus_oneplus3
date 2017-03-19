@@ -279,6 +279,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libjson
 
+# Oneplus3Parts
+PRODUCT_PACKAGES += \
+    Oneplus3Parts
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
