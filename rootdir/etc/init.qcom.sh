@@ -223,6 +223,7 @@ case "$target" in
         start_msm_irqbalance
         ;;
     "msm8996")
+        start_msm_irqbalance
         if [ -f /sys/devices/soc0/hw_platform ]; then
              hw_platform=`cat /sys/devices/soc0/hw_platform`
         fi

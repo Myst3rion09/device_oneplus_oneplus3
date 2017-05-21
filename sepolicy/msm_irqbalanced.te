@@ -1,0 +1,2 @@
+allow msm_irqbalanced proc_stat:dir { r_dir_perms };
+allow msm_irqbalanced proc_stat:file { rw_file_perms };
