@@ -156,7 +156,7 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    Snap \
+    SnapdragonCamera \
     libcamera_shim
 
 # Charger Images
