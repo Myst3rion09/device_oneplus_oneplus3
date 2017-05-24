@@ -27,6 +27,8 @@ public class MusicGestureSwitch implements OnPreferenceChangeListener {
 
     private static final String FILE = "/proc/touchpanel/music_enable";
     private static final String FILE_ALT = "/proc/touchpanel/double_swipe_enable";
+    private static final String FILE_ALT_LEFT = "/proc/touchpanel/left_arrow_enable";
+    private static final String FILE_ALT_RIGHT = "/proc/touchpanel/right_arrow_enable";
 
     private static String getFile() {
         if (Utils.fileWritable(FILE)) {
@@ -62,19 +64,39 @@ public class MusicGestureSwitch implements OnPreferenceChangeListener {
         }
 
         boolean enabled = isEnabled(context);
-        if(enabled)
+        if(enabled) {
             Utils.writeValue(getFile(), "1");
-        else
+            if (getFile() == FILE_ALT) {
+                Utils.writeValue(FILE_ALT_LEFT, "1");
+                Utils.writeValue(FILE_ALT_RIGHT, "1");
+            }
+        }
+        else {
             Utils.writeValue(getFile(), "0");
+            if (getFile() == FILE_ALT) {
+                Utils.writeValue(FILE_ALT_LEFT, "0");
+                Utils.writeValue(FILE_ALT_RIGHT, "0");
+            }
+        }
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         Boolean enabled = (Boolean) newValue;
-        if(enabled)
+        if(enabled) {
             Utils.writeValue(getFile(), "1");
-        else
+            if (getFile() == FILE_ALT) {
+                Utils.writeValue(FILE_ALT_LEFT, "1");
+                Utils.writeValue(FILE_ALT_RIGHT, "1");
+            }
+        }
+        else {
             Utils.writeValue(getFile(), "0");
+            if (getFile() == FILE_ALT) {
+                Utils.writeValue(FILE_ALT_LEFT, "0");
+                Utils.writeValue(FILE_ALT_RIGHT, "0");
+            }
+        }
         return true;
     }
 }
