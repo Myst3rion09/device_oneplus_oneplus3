@@ -372,6 +372,7 @@ service qcomsysd /system/bin/qcom-system-daemon
     class main
     user root
     group root qcom_diag
+    disabled
 
 service ssr_setup /system/bin/ssr_setup
     oneshot
@@ -757,6 +758,7 @@ service ptt_socket_app /system/bin/ptt_socket_app -d
     user root
     group root
     oneshot
+    disabled
 
 service ptt_ffbm /system/bin/ptt_socket_app -f -d
     user root
@@ -860,6 +862,7 @@ service atfwd /system/bin/ATFWD-daemon
     class late_start
     user system
     group system radio
+    disabled
 
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     class late_start
@@ -1006,6 +1009,7 @@ service vm_bms /system/bin/vm_bms
     disabled
 
 service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf
+    socket msm_irqbalance seqpacket 660 root system
     class core
     user root
     group root

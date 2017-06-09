@@ -237,6 +237,7 @@ service qvop-daemon /system/bin/qvop-daemon
     class late_start
     user system
     group system drmrpc
+    disabled
 
 service qvrd /system/vendor/bin/qvrservice
     class late_start
@@ -486,6 +487,7 @@ service dts_configurator /system/bin/dts_configurator
     user system
     group system media audio
     oneshot
+    disabled
 
 service dtseagleservice /system/bin/dts_eagle_service
     class late_start
@@ -525,6 +527,7 @@ service tlocd /system/bin/tloc_daemon
     class late_start
     user system
     group drmrpc gps net_raw
+    disabled
 
 service energy-awareness /system/bin/energy-awareness
     class main
@@ -541,6 +544,7 @@ service mdtpd /system/vendor/bin/mdtpd
    class late_start
    user root
    group system radio drmrpc
+   disabled
 
 on charger
     write /sys/devices/system/cpu/cpu2/online 0
