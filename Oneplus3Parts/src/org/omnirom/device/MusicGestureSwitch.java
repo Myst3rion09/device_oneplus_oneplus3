@@ -25,17 +25,11 @@ import android.preference.PreferenceManager;
 
 public class MusicGestureSwitch implements OnPreferenceChangeListener {
 
-    private static final String FILE = "/proc/touchpanel/music_enable";
-    private static final String FILE_ALT = "/proc/touchpanel/double_swipe_enable";
-    private static final String FILE_ALT_LEFT = "/proc/touchpanel/left_arrow_enable";
-    private static final String FILE_ALT_RIGHT = "/proc/touchpanel/right_arrow_enable";
+    private static final String FILE = "/proc/touchpanel/double_swipe_enable";
 
-    private static String getFile() {
+    public static String getFile() {
         if (Utils.fileWritable(FILE)) {
             return FILE;
-        }
-        if (Utils.fileWritable(FILE_ALT)) {
-            return FILE_ALT;
         }
         return null;
     }
@@ -48,55 +42,10 @@ public class MusicGestureSwitch implements OnPreferenceChangeListener {
         return Utils.getFileValueAsBoolean(getFile(), false);
     }
 
-    public static boolean isEnabled(Context context) {
-        boolean enabled = Utils.getFileValueAsBoolean(getFile(), false);
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPrefs.getBoolean(DeviceSettings.KEY_MUSIC_SWITCH, enabled);
-    }
-
-    /**
-     * Restore setting from SharedPreferences. (Write to kernel.)
-     * @param context       The context to read the SharedPreferences from
-     */
-    public static void restore(Context context) {
-        if (!isSupported()) {
-            return;
-        }
-
-        boolean enabled = isEnabled(context);
-        if(enabled) {
-            Utils.writeValue(getFile(), "1");
-            if (getFile() == FILE_ALT) {
-                Utils.writeValue(FILE_ALT_LEFT, "1");
-                Utils.writeValue(FILE_ALT_RIGHT, "1");
-            }
-        }
-        else {
-            Utils.writeValue(getFile(), "0");
-            if (getFile() == FILE_ALT) {
-                Utils.writeValue(FILE_ALT_LEFT, "0");
-                Utils.writeValue(FILE_ALT_RIGHT, "0");
-            }
-        }
-    }
-
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         Boolean enabled = (Boolean) newValue;
-        if(enabled) {
-            Utils.writeValue(getFile(), "1");
-            if (getFile() == FILE_ALT) {
-                Utils.writeValue(FILE_ALT_LEFT, "1");
-                Utils.writeValue(FILE_ALT_RIGHT, "1");
-            }
-        }
-        else {
-            Utils.writeValue(getFile(), "0");
-            if (getFile() == FILE_ALT) {
-                Utils.writeValue(FILE_ALT_LEFT, "0");
-                Utils.writeValue(FILE_ALT_RIGHT, "0");
-            }
-        }
+        Utils.writeValue(getFile(), enabled ? "1" : "0");
         return true;
     }
 }
