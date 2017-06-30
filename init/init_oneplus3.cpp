@@ -107,6 +107,17 @@ void load_op3t(const char *model) {
     property_set("ro.build.fingerprint", "OnePlus/OnePlus3/OnePlus3T:7.1.1/NMF26F/06151930:user/release-keys");
 }
 
+static void import_panel_prop(const std::string& key, const std::string& value, bool for_emulator) {
+    if (key.empty()) return;
+
+    if (key.compare("mdss_mdp.panel") == 0) {
+        if (value.find("s6e3fa3") != std::string::npos)
+            property_set("ro.product.panel", "samsung_s6e3fa3_1080p");
+        if (value.find("s6e3fa5") != std::string::npos)
+            property_set("ro.product.panel", "samsung_s6e3fa5_1080p");
+    }
+}
+
 void vendor_load_properties() {
     int rf_version = stoi(property_get("ro.boot.rf_version"));
 
@@ -148,4 +159,6 @@ void vendor_load_properties() {
     }
 
     init_alarm_boot_properties();
+
+    import_kernel_cmdline(false, import_panel_prop);
 }
