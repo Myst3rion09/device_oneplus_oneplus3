@@ -94,8 +94,8 @@ void load_op3(const char *model) {
     property_set("ro.battery.capacity", "3000");
     property_set("ro.build.product", "OnePlus3");
     property_set("ro.product.device", "OnePlus3");
-    property_set("ro.build.description", "OnePlus3-user 7.1.1 NMF26F 74 dev-keys");
-    property_set("ro.build.fingerprint", "OnePlus/OnePlus3/OnePlus3:7.1.1/NMF26F/07151600:user/release-keys");
+    property_set("ro.build.description", "OnePlus3-user 7.1.1 NMF26F 82 dev-keys");
+    property_set("ro.build.fingerprint", "OnePlus/OnePlus3/OnePlus3:7.1.1/NMF26F/08101100:user/release-keys");
 }
 
 void load_op3t(const char *model) {
@@ -103,8 +103,8 @@ void load_op3t(const char *model) {
     property_set("ro.battery.capacity", "3400");
     property_set("ro.build.product", "OnePlus3");
     property_set("ro.product.device", "OnePlus3T");
-    property_set("ro.build.description", "OnePlus3-user 7.1.1 NMF26F 60 dev-keys");
-    property_set("ro.build.fingerprint", "OnePlus/OnePlus3/OnePlus3T:7.1.1/NMF26F/07151930:user/release-keys");
+    property_set("ro.build.description", "OnePlus3-user 7.1.1 NMF26F 69 dev-keys");
+    property_set("ro.build.fingerprint", "OnePlus/OnePlus3/OnePlus3T:7.1.1/NMF26F/08101230:user/release-keys");
 }
 
 static void import_panel_prop(const std::string& key, const std::string& value, bool for_emulator) {
